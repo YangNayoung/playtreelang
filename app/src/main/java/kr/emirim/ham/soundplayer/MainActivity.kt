@@ -11,12 +11,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+val MENU1 = 1
+val MENU2 = 2
+val MENU3 = 3
+val MENU4 = 4
+val APPINFO = 98
+val TEAMINFO = 99
 
 class MainActivity : AppCompatActivity() {
-    val MENU1 = 1
-    val MENU2 = 2
-    val MENU3 = 3
-    val MENU4 = 4
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,10 +28,12 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
         val menuList = ArrayList<Menu>()
-        menuList.add(Menu(R.drawable.menu1, "메뉴1", MENU1))
-        menuList.add(Menu(R.drawable.menu2, "메뉴2", MENU2))
+        menuList.add(Menu(R.drawable.menu1, "Number", MENU1))
+        menuList.add(Menu(R.drawable.menu2, "Color", MENU2))
         menuList.add(Menu(R.drawable.menu3, "메뉴3", MENU3))
         menuList.add(Menu(R.drawable.menu4, "메뉴4", MENU4))
+        menuList.add(Menu(R.drawable.menu4, "About PTL", APPINFO))
+        menuList.add(Menu(R.drawable.menu4, "Team KoreYsia", TEAMINFO))
         val rvAdapter = RvAdapter(menuList)
         recyclerView.adapter = rvAdapter
 
@@ -49,9 +55,22 @@ class MainActivity : AppCompatActivity() {
             holder.title?.text = menuList[position].title
             holder.img?.setImageResource(menuList[position].img)
             holder.itemView.setOnClickListener {
-                val intent = Intent(it.context,WordListActivity::class.java)
-                intent.putExtra("mode",menuList[position].mode)
-                it.context.startActivity(intent)
+
+                when(menuList[position].mode){
+                    APPINFO -> {
+                        val intent = Intent(it.context,AppInfoActivity::class.java)
+                        it.context.startActivity(intent)
+                    }
+                    TEAMINFO ->{
+                        val intent = Intent(it.context,TeamInfoActivity::class.java)
+                        it.context.startActivity(intent)
+                    }
+                    else->{
+                        val intent = Intent(it.context,WordListActivity::class.java)
+                        intent.putExtra("mode",menuList[position].mode)
+                        it.context.startActivity(intent)
+                    }
+                }
             }
         }
 

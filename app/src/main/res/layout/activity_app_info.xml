@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".WordListActivity">
+        tools:context=".AppInfoActivity">
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -31,15 +31,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/categoryTitle" android:textSize="28sp"
                     android:textStyle="bold" android:textAlignment="center"/>
+            <TextView
+                    android:text="@string/appinfo_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"  android:textSize="16sp"
+                    android:textAlignment="textStart"
+                    />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/recyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/cardView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
